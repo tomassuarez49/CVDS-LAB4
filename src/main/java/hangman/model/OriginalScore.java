@@ -8,9 +8,29 @@ public class OriginalScore implements GameScore{
 	 * @throws hangman.exceptions.ExceptionValorInvalido Si los valores proporcionados no son válidos.
 	 * @return Retorna el resultado de los puntos obtenidos.
 	 */
+
+	private int points;
+
+	public int calculateScore(int correctCount,int incorrectCount){
+		points=100;
+		if(correctCount< 0 || incorrectCount<0){
+			System.out.println("Invalid");
+			return -1;
+		}
+		else{
+			points = 100;
+		 	return incorrectWords(incorrectCount);
+
+		}
+	}
 	
-	@Override
-	public int calculateScore(int correctCount,int incorrectCount){	} 
+	private int incorrectWords(int incorrectCount){
+		while(points >0 && incorrectCount>0){
+			points -= 10;
+			incorrectCount--;
+		}
+		return points;
+	}
 
 
 }

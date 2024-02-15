@@ -9,10 +9,30 @@ public class BonusScore implements GameScore{
 	 * @return Retorna el resultado de los puntos obtenidos.
 	 */
 
+	private int points;
 
-	@Override
-	public int calculateScore(int correctScore, int incorrectCount){
-
+	public int calculateScore(int correctCount,int incorrectCount){
+		points = 0;
+		if(correctCount< 0 || incorrectCount<0){
+			System.out.println("Invalid");
+			return -1;
+		}
+		correctWords(correctCount);
+		incorrectWords(incorrectCount);
+		return points;
 	}
+
+
+	private void correctWords(int correctCount){
+		for(int i = 0; i<correctCount; i++){
+			points += 10;
+		}
+   }
+   private void incorrectWords(int incorrectCount){
+		while(points > 0 && incorrectCount>0){
+			points -= 5;
+			incorrectCount -= 1;
+		}
+   }
 
 }
